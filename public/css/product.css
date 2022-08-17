@@ -1,0 +1,27 @@
+.proddk-form {
+    width: 20rem;
+    max-width: 90%;
+    margin: auto;
+    display: block;
+}
+
+.proddk-item {
+    width: 20rem;
+    max-width: 95%;
+    margin: 1rem;
+}
+
+.proddk__title {
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+.proddk__price {
+    text-align: center;
+    color: #4d4d4d;
+    margin-bottom: 0.5rem;
+}
+
+.proddk__description {
+    text-align: center;
+}
