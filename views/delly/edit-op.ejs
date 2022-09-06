@@ -1,0 +1,77 @@
+<%- include('../includes/head.ejs') %>
+    <link rel="stylesheet" href="/css/forms.css">
+    <link rel="stylesheet" href="/css/product.css">
+    </head>
+
+    <body>
+        <%- include('../includes/navigation.ejs') %>
+
+            <main>
+                <% if (errorMessage) { %>
+                    <div class="user-message user-message--error">
+                        <%= errorMessage %>
+                    </div>
+                    <% } %>
+                        <form class="proddk-form text-center"
+                            action="/<% if (editing) { %>edit-op<% } else { %>add-op<% } %>" method="POST">
+                            <div class="form-control text-end">
+                                <label for="name">الاسم كامل</label>
+                                <input class="<%= validationErrors.find(e => e.param === 'name') ? 'invalid' : '' %>"
+                                    type="text" name="name" id="name"
+                                    value="<% if (editing || hasError) { %><%= op.name %><% } %>">
+                            </div>
+
+                            <div class="form-control text-end">
+                                <label for="total">رقم الهاتف</label>
+                                <input class="<%= validationErrors.find(e => e.param === 'total') ? 'invalid' : '' %>"
+                                    type="number" name="total" id="total"
+                                    value="<% if (editing || hasError) { %><%= op.total %><% } %>">
+                            </div>
+                            <div class="form-control">
+
+                                <% for (var i=0;i<sto.length;i++) { %>
+
+                                    <label for="stock">
+                                        <%= sto[i] %>
+                                    </label>
+                                    <input class="" name="stock" type="radio" id="stock" value="<%= sto[i] %>">
+                                    <!-- value="  <%= sto[i] %>"> -->
+                                    <% } %>
+
+                            </div>
+                            <% for (let product of rooms) { %>
+    
+                                    <option value=" <%= rooms.roomNo %>">
+                                        <%= rooms.roomNo %>
+                                    </option>
+
+                                </select>
+
+
+                                <% } %>
+
+                                    <!-- 
+                            
+                            <div class="form-control text-end">
+                                <label for="total">الكمية</label>
+                                <input class="<%= validationErrors.find(e => e.param === 'total') ? 'invalid' : '' %>"
+                                    type="number" name="total" id="total"
+                                    value="<% if (editing || hasError) { %><%= op.total %><% } %>">
+                            </div>
+ 
+                            <input type="hidden" type="number" value="0" name="den">
+                            <input type="hidden" value="noon" name="mark">
+                            <input type="hidden" type="number" value="0" name="room"> -->
+
+
+                                    <% if (editing) { %>
+                                        <input type="hidden" value="<%= op._id %>" name="opId">
+                                        <% } %>
+
+                                            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                                            <button class="btn btn-primary" type="submit">
+                                                <% if (editing) { %> تعديل عميل<% } else { %>أضافه عميل<% } %>
+                                            </button>
+                        </form>
+            </main>
+            <%- include('../includes/end.ejs') %>
