@@ -15,22 +15,29 @@
                         <form class="proddk-form" action="/<% if (editing) { %>edit-room<% } else { %>add-room<% } %>"
                             method="POST">
                             <div class="form-control">
-                                <label for="roomNO">roomNO</label>
+                                <label for="roomNO">room NO</label>
                                 <input class="<%= validationErrors.find(e => e.param === 'roomNO') ? 'invalid' : '' %>"
                                     type="text" name="roomNO" id="roomNO"
                                     value="<% if (editing || hasError) { %><%= room.roomNO %><% } %>">
                             </div>
+
                             <div class="form-control">
-                                <label for="total">Total</label>
+                                <label for="total">total</label>
                                 <input class="<%= validationErrors.find(e => e.param === 'total') ? 'invalid' : '' %>"
-                                    type="number" name="total" id="total" step="0.01"
+                                    type="number" name="total" id="total"
                                     value="<% if (editing || hasError) { %><%= room.total %><% } %>">
                             </div>
                             <div class="form-control">
-                                <label for="stock">Stock</label>
-                                <input class="<%= validationErrors.find(e => e.param === 'stock') ? 'invalid' : '' %>"
-                                    type="text" name="stock" id="stock"
-                                    value="<% if (editing || hasError) { %><%= room.stock %><% } %>">
+
+                                <% for (var i=0;i<sto.length;i++) { %>
+
+                                    <label for="stock">
+                                        <%= sto[i] %>
+                                    </label>
+                                    <input class="" name="stock" type="radio" id="stock" value="<%= sto[i] %>">
+                                    <!-- value="  <%= sto[i] %>"> -->
+                                    <% } %>
+
                             </div>
                             <% if (editing) { %>
                                 <input type="hidden" value="<%= room._id %>" name="roomId">
@@ -38,7 +45,7 @@
 
                                     <input type="hidden" name="_csrf" value="<%= csrfToken %>">
                                     <button class="btn" type="submit">
-                                        <% if (editing) { %>Update room<% } else { %>Add room<% } %>
+                                        <% if (editing) { %>Update Room<% } else { %>Add Room<% } %>
                                     </button>
                         </form>
             </main>

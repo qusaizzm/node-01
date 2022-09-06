@@ -217,6 +217,7 @@ exports.postEditProduct = (req, res, next) => {
       return next(error);
     });
 };
+
 exports.getEmps = (req, res, next) => {
  Emp.find({ userId: req.user._id })
     // .select('title price -_id')

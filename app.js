@@ -11,6 +11,8 @@ const flash = require('connect-flash');
 
 const errorController = require('./controllers/error');
 const User = require('./models/user');
+
+
 const url = "mongodb://127.0.0.1:27017/Mydb";
 
 const MONGODB_URI = url;
@@ -26,8 +28,9 @@ const csrfProtection = csrf();
 app.set('view engine', 'ejs');
 app.set('views', 'views');
 
-const stockRoutes = require('./routes/stock');
 const adminRoutes = require('./routes/admin');
+const opRoutes = require('./routes/op');
+const stockRoutes = require('./routes/stock');
 const shopRoutes = require('./routes/shop');
 const authRoutes = require('./routes/auth');
 
@@ -67,8 +70,9 @@ app.use((req, res, next) => {
       next(new Error(err));
     });
 });
-app.use(stockRoutes);
 app.use('/admin', adminRoutes);
+app.use(stockRoutes);
+app.use(opRoutes);
 app.use(shopRoutes);
 app.use(authRoutes);
 

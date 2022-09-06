@@ -14,6 +14,7 @@ const roomSchema = new Schema({
     stock: {
         type: String,
         required: true
+
     },
 });
 

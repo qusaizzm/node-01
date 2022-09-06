@@ -7,23 +7,27 @@ const productSchema = new Schema({
     type: String,
     required: true
   },
-  phone: {
+  phone: [{
+    type: Number,
+    required: true
+  }],
+  total: {
     type: Number,
     required: true
   },
-  total: {
+  mark:[ {
     type: String,
     required: true
-  },
-  room: {
-    type: String,
+  }],
+  room:[ {
+    type: Number,
+    required: true
+  }],
+  den: {
+    type: Number,
     required: true
   },
-  userId: {
-    type: Schema.Types.ObjectId,
-    ref: 'User',
-    required: true
-  }
+
 });
 
-module.exports = mongoose.model('Product', productSchema);
+module.exports = mongoose.model('Custmer', productSchema);
