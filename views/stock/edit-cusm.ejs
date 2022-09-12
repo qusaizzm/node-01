@@ -12,8 +12,8 @@
                         <%= errorMessage %>
                     </div>
                     <% } %>
-                        <form class="proddk-form text-center" action="/<% if (editing) { %>edit-cusm<% } else { %>add-cusm<% } %>"
-                            method="POST">
+                        <form class="proddk-form text-center"
+                            action="/<% if (editing) { %>edit-cusm<% } else { %>add-cusm<% } %>" method="POST">
                             <div class="form-control text-end">
                                 <label for="name">الاسم كامل</label>
                                 <input class="<%= validationErrors.find(e => e.param === 'name') ? 'invalid' : '' %>"
@@ -29,13 +29,8 @@
                             </div>
 
                             <!--  -->
-                            <div class="form-control text-end">
-                                <label for="total">الكمية</label>
-                                <input class="<%= validationErrors.find(e => e.param === 'total') ? 'invalid' : '' %>"
-                                    type="number" name="total" id="total"
-                                    value="<% if (editing || hasError) { %><%= cusm.total %><% } %>">
-                            </div>
 
+                            <input type="hidden" type="number" value="0" name="total">
                             <input type="hidden" type="number" value="0" name="den">
                             <input type="hidden" value="noon" name="mark">
                             <input type="hidden" type="number" value="0" name="room">

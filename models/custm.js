@@ -5,7 +5,8 @@ const Schema = mongoose.Schema;
 const productSchema = new Schema({
   name: {
     type: String,
-    required: true
+    required: true,
+    unique: true
   },
   phone: [{
     type: Number,
@@ -15,11 +16,11 @@ const productSchema = new Schema({
     type: Number,
     required: true
   },
-  mark:[ {
+  mark: [{
     type: String,
     required: true
   }],
-  room:[ {
+  room: [{
     type: Number,
     required: true
   }],

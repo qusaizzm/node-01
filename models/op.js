@@ -4,18 +4,19 @@ const Schema = mongoose.Schema;
 
 const productSchema = new Schema({
   name: {
-    type: String,
+    type: Schema.Types.ObjectId,
+    ref: 'Custmer',
     required: true
   },
   total: {
     type: Number,
     required: true
   },
-  roomId: {
+  roomId: [{
     type: Schema.Types.ObjectId,
     ref: 'Room',
     required: true
-  }
+  }]
   // mark:[ {
   //   type: String,
   //   required: true

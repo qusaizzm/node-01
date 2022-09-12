@@ -14,12 +14,30 @@ router.get('/op', custmoController.getIndex);
 
 router.get('/add-op', isAuth, custmoController.getAddOp);
 
+router.get('/ops/:productId', custmoController.getItemByID);
+
+router.post('/ops',
+    [
+        body('name')
+            .isString()
+            .trim(),
+        body('total'),
+        body('roomId'),
+        // body('mark'),
+        // body('room'),
+        // body('optype'),
+
+    ],
+    isAuth,
+    custmoController.postAddOpNewOpre
+);
 router.post('/add-op',
     [
         body('name')
             .isString()
             .trim(),
         body('total'),
+        body('roomId'),
         // body('mark'),
         // body('room'),
         // body('optype'),
@@ -27,6 +45,23 @@ router.post('/add-op',
     ],
     isAuth,
     custmoController.postAddOp
+);
+
+
+router.post('/as-op',
+    [
+        body('name')
+            .isString()
+            .trim(),
+        body('total'),
+        body('roomId'),
+        // body('mark'),
+        // body('room'),
+        // body('optype'),
+
+    ],
+    isAuth,
+    custmoController.selectCusm
 );
 // router.get('/edit-cusm/:cusmId', isAuth, custmoController.getEditCus);
 
@@ -45,6 +80,6 @@ router.post('/add-op',
 //     custmoController.postEditCus
 // );
 
-// router.post('/delete-cusm', isAuth, custmoController.postDeleteCus);
+router.post('/delete-op', isAuth, custmoController.postDeleteOp);
 
 module.exports = router;

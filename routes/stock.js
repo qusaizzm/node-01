@@ -16,11 +16,11 @@ router.get('/add-room', isAuth, shopController.getAddRoom);
 // /admin/add-room => POST
 router.post('/add-room',
     [
-        body('name')
+        body('roomNO')
             .isString()
             .trim(),
-        body('phone'),
-        body('total').isString()
+        body('total'),
+        body('stock').isString()
             .trim(),
 
     ],

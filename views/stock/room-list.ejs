@@ -1,40 +1,115 @@
-<%- include('../includes/head.ejs') %>
-    <link rel="stylesheet" href="/css/room.css">
+
+
+
+
+            <%- include('../includes/head.ejs') %>
+    <link rel="stylesheet" href="/css/product.css">
     </head>
 
     <body>
         <%- include('../includes/navigation.ejs') %>
 
-            <main>
+            <main class="container mt-3">
                 <% if (sto.length> 0) { %>
-                    <div class="grid">
-                        <% for (let room of sto) { %>
-                            <article class="card proddk-item">
-                                <header class="card__header">
-                                    <h1 class="proddk__title">
-                                        <%= room.roomNO %>
-                                    </h1>
-                                </header>
-                                <div class="card__content">
-                                    <h2 class="proddk__price">$
-                                        <%= room.total %>
-                                    </h2>
-                                    <p class="proddk__description">
-                                        <%= room.stock %>
-                                    </p>
-                                </div>
-                                <div class="card__actions">
-                                    <a href="/edit-room/<%= room._id %>?edit=true" class="btn">Edit</a>
-                                    <form action="/delete-room" method="POST">
-                                        <input type="hidden" value="<%= room._id %>" name="roomId">
-                                        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
-                                        <button class="btn" type="submit">Delete</button>
-                                    </form>
+                    <div class="container mt-5 px-2">
+                        <div class="table-responsive">
+                            <table class="table table-responsive ">
+                                <thead>
+                                    <tr class="bg-light">
 
-                                </div>
-                            </article>
-                            <% } %>
+                                        <th scroome="col" width="70%">
+                                            <h2>قائمه الغرف</h2>
+                                        </th>
+
+                                        <th scroome="col" class="text-end" width="20%">
+                                            <div class="text-end text-center">
+                                                <a href="/add-room">
+                                                    <button type="button" class="btn btn-primary">إضافه غرفة</button>
+                                                </a>
+
+
+                                            </div>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <p>في هذه القائمه تستطيع معرفه تفاصيل الغرف والتعديل عليها</p>
+
+                                        </td>
+                                    </tr>
+
+                                </tbody>
+
+                        </div>
                     </div>
+                    <div class="container mt-5 px-2">
+                        <div class="container mt-3">
+
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table table-responsive table-borderless table-bordered">
+                                <thead>
+                                    <tr class="bg-light">
+                                        <th scroome="col" width="5%"><input class="form-check-input" type="checkbox"></th>
+                                        <th scroome="col" width="5%">#</th>
+
+                                        <th scroome="col" width="20%">رقم الغرفه</th>
+                                        <th scroome="col" width="20%">المخزن</th>
+                                        <th scroome="col" width="20%">الكمية</th>
+                                        <th scroome="col" class="text-end" width="20%"><span> </span></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% for (var i=0;i<sto.length;i++) { %>
+                                        <tr>
+                                            <th scroome="row"><input class="form-check-input" type="checkbox"></th>
+                                            <td>
+                                                <%= i+1 %>
+                                            </td>
+                                            <td>
+                                                <%= sto[i].roomNO %>
+                                            </td>
+                                            <td>
+                                                <%= sto[i].stock %>
+                                            </td>
+                                            <td>
+                                                <%= sto[i].total %>
+                                            </td>
+                                            
+
+                                            <td class="text-end text-center">
+                                                <a href="/edit-room/<%= sto[i]._id %>?edit=true" type="button"
+                                                    class="btn btn-primary">تعديل</button>
+                                                </a>
+                                                <form action="/delete-room" method="POST">
+                                                    <input type="hidden" value="<%= sto[i]._id %>" name="roomId">
+                                                    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                                                    <button type="submit" class="btn btn-danger">حذف</button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                        <% } %>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- <div class="mb-2 d-flex justify-content-between align-items-center">
+    
+                <div class="position-relative">
+                    <span class="position-absolute search"><i class="fa fa-search"></i></span>
+                    <input class="form-control w-100" placeholder="Search by order#, name...">
+                </div>
+    
+                <div class="px-2">
+    
+                    <span>Filters <i class="fa fa-angle-down"></i></span>
+                    <i class="fa fa-ellipsis-h ms-3"></i>
+                </div>
+    
+            </div> -->
+                    </div>
+
                     <% } else { %>
                         <h1>No Products Found!</h1>
                         <% } %>

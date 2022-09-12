@@ -87,13 +87,17 @@
                                             </td>
 
                                             <td class="text-end text-center">
-                                                <a href="/edit-cusm/<%= sto[i]._id %>?edit=true" type="button"
+                                                <!-- <a href="/edit-cusm/<%= sto[i]._id %>?edit=true" type="button"
                                                     class="btn btn-primary">تعديل</button>
+                                                </a> -->
+                                                <a href="/ops/<%= sto[i]._id %>" type="button"
+                                                    class="btn btn-primary">تخزين</button>
                                                 </a>
                                                 <form action="/delete-cusm" method="POST">
-                                                    <input type="hidden" value="<%= sto[i]._id %>" name="cusmId">
+                                                    <input type="hidden" value="<%= sto[i]._id %>" name="productId">
                                                     <input type="hidden" name="_csrf" value="<%= csrfToken %>">
-                                                    <button type="submit" class="btn btn-danger">حذف</button>
+                                                    <button type="submit" class="btn btn-danger">سحب</button>
+                                                    <!-- <button type="submit" class="btn btn-danger">حذف</button> -->
                                                 </form>
                                             </td>
                                         </tr>

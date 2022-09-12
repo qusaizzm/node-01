@@ -13,14 +13,17 @@
                                 <thead>
                                     <tr class="bg-light">
 
-                                        <th scope="col" width="70%">
-                                            <h2>قائمه العملاء</h2>
+                                        <th scope="col" width="50%">
+                                            <h2>قائمه العميليات</h2>
                                         </th>
+                                        <th scope="col">
 
-                                        <th scope="col" class="text-end" width="20%">
+
                                             <div class="text-end text-center">
                                                 <a href="/add-op">
-                                                    <button type="button" class="btn btn-primary">إضافه عميل</button>
+                                                    <button type="button" class="btn btn-primary">إضافه
+                                                        عملية
+                                                        جديدة</button>
                                                 </a>
 
 
@@ -31,7 +34,7 @@
                                 <tbody>
                                     <tr>
                                         <td>
-                                            <p>في هذه القائمه تستطيع معرفه تفاصيل العملاء والتعديل عليها</p>
+                                            <p>في هذه القائمه تستطيع معرفه تفاصيل اليوميه والتعديل عليها</p>
 
                                         </td>
                                     </tr>
@@ -68,16 +71,15 @@
                                                 <%= i+1 %>
                                             </td>
                                             <td>
-                                                <%= sto[i].name %>
+                                                <%= sto[i].name.name %>
                                             </td>
                                             <td>
                                                 <%= sto[i].total %>
                                             </td>
                                             <td>
-                                                <%= sto[i].mark %>
+                                                <%= sto[i].roomId[0].roomNO%>
                                             </td>
                                             <td>
-                                                <%= sto[i].room %>
                                             </td>
                                             <td>
                                                 <%= sto[i].phone %>

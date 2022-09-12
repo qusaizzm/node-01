@@ -1,0 +1,22 @@
+  <div class="form-control">
+
+                                <!-- <% for (var i=0;i<sto.length;i++) { %>
+
+                                    <label for="stock">
+                                        <%= sto[i] %>
+                                    </label>
+                                    <input class="" name="stock" type="radio" id="stock" value="<%= sto[i] %>">
+                                    <!-- value="  <%= sto[i] %>"> -->
+                                    <!-- <% } %> --> -->
+
+                            </div>
+                            <!-- <% for (let product of rooms) { %>
+    
+                                    <option value=" <%= rooms.roomNo %>">
+                                        <%= rooms.roomNo %>
+                                    </option> -->
+<!-- 
+                                </select>
+
+
+                                <% } %> -->
