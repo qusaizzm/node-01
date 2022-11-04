@@ -181,7 +181,7 @@ module.exports = mongoose.model('User', userSchema);
 //     const db = getDb();
 //     return db
 //       .collection('users')
-//       .findOne({ _id: new ObjectId(userId) })
+//       .findOn]
 //       .then(user => {
 //         console.log(user);
 //         return user;

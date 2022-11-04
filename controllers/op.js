@@ -5,6 +5,9 @@ const Cudd = require('../models/custm');
 const { validationResult } = require('express-validator/check');
 const { array } = require('assert-plus');
 const { CopyDataProperties } = require('es-abstract/es2019');
+const { interfaceDeclaration } = require('babel-types');
+const { Int32 } = require('bson');
+const { isEmpty } = require('lodash');
 
 exports.getAddOp = (req, res, next) => {
     const name = req.body.name;
@@ -49,13 +52,17 @@ exports.getAddOp = (req, res, next) => {
 //// from custmer  view  
 exports.getItemByID = (req, res, next) => {
     const stock = req.body.stock;
-
+ 
     const prodId = req.params.productId;
+    
+
     Room.find()
         .then(roomss => {
             Cudd.findById(prodId)
                 .then(moo => {
-                    console.log(roomss.stock + "jjjjjjjjjjjjjj");
+                    // console.log(roomss.stock + "jjjjjjjjjjjjjj");
+                    console.log(stock);
+                    // console.log(roomss);
 
                     res.render('delly/get-op', {
                         rooms: roomss,
@@ -93,11 +100,14 @@ exports.postAddOpNewOpre = (req, res, next) => {
     const Oldtotal = req.body.Oldtotal;
 
     const room = req.body.roomId;
+    const stock = req.body.stock;
 
     // const optype = req.body.optype;
 
     const errors = validationResult(req);
-    console.log([total, name, Oldtotal, nameID]);
+    // console.log([total, name, Oldtotal, nameID]);
+    console.log([total, Oldtotal]);
+    console.log([Oldtotal]);
     // console.log(room + " llll");
     if (!errors.isEmpty()) {
         console.log(errors.array());
@@ -120,6 +130,7 @@ exports.postAddOpNewOpre = (req, res, next) => {
     }
 
 
+
     const op = new Op({
         // _id: new mongoose.Types.ObjectId('5badf72403fd8b5be0366e81'),
         name: nameID,
@@ -130,21 +141,43 @@ exports.postAddOpNewOpre = (req, res, next) => {
         // mark: mark,
         // optype: optype,
     });
-
+    const calcuTotal = +total + +Oldtotal;
+    console.log(calcuTotal + ' Created Cus');
 
     op
         .save()
         .then(result => {
             // console.log(result);
             console.log('Created Cus');
-            res.redirect('op');
+            // res.redirect('op');
+            Cudd.findById(nameID)
+                .then(Opm => {
+                    // if (Opm.userId.toString() !== req.user._id.toString()) {
+                    //   return res.redirect('/');
+                    // }
+                    Opm.total = calcuTotal;
 
+                    return Opm.save().then(result => {
+                        console.log('UPDATED PRODUCT!');
+                        res.redirect('op');
+
+                        // res.redirect('/');
+                    });
+                })
+                .catch(err => {
+                    const error = new Error(err);
+                    error.httpStatusCode = 500;
+                    return next(error);
+                });
         })
         .catch(err => {
             const error = new Error(err);
             error.httpStatusCode = 500;
             return next(error);
         });
+
+
+
 };
 
 exports.selectCusm = (req, res, next) => {

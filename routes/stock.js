@@ -44,7 +44,7 @@ router.post('/delete-room', isAuth, shopController.postDeleteRoom);
 
 ///
 
-router.get('/custamss', custmoController.getCuss);
+// router.get('/', custmoController.getIndex);
 
 router.get('/add-cusm', isAuth, custmoController.getAddCus);
 

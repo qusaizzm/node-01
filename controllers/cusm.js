@@ -56,7 +56,7 @@ exports.postAddCus = (req, res, next) => {
         .then(result => {
             // console.log(result);
             console.log('Created Cus');
-            res.redirect('custamss');
+            res.redirect('/');
 
         })
         .catch(err => {
@@ -150,22 +150,22 @@ exports.postEditCus = (req, res, next) => {
         });
 };
 
-exports.getCuss = (req, res, next) => {
-    Cus.find()
-        .then(custamss => {
-            console.log(custamss);
-            res.render('stock/index', {
-                sto: custamss,
-                pageTitle: 'All Cuss',
-                path: '/'
-            });
-        })
-        .catch(err => {
-            const error = new Error(err);
-            error.httpStatusCode = 500;
-            return next(error);
-        });
-};
+// exports.getCuss = (req, res, next) => {
+//     Cus.find()
+//         .then(custamss => {
+//             console.log(custamss);
+//             res.render('stock/index', {
+//                 sto: custamss,
+//                 pageTitle: 'All Cuss',
+//                 path: '/'
+//             });
+//         })
+//         .catch(err => {
+//             const error = new Error(err);
+//             error.httpStatusCode = 500;
+//             return next(error);
+//         });
+// };
 
 exports.postDeleteCus = (req, res, next) => {
     const cusmId = req.body.cusmId;

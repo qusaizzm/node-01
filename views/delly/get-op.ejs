@@ -3,6 +3,7 @@
     <link rel="stylesheet" href="/css/product.css">
     </head>
 
+
     <body>
         <%- include('../includes/navigation.ejs') %>
 
@@ -15,7 +16,7 @@
 
                         <form class="proddk-form text-center"
                             action="/<% if (editing) { %>edit-op<% } else { %>ops<% } %>" method="POST">
-                            
+
                             <div class="form-control text-end">
                                 <h2 id="name" name="name" value="<%= product.name %>">
                                     <%= product.name %>
@@ -30,23 +31,38 @@
                             </div>
                             <div class="form-control text-end">
                                 <label for="total">الكمية</label>
-                              
-                                    <input
-                                        class="<%= validationErrors.find(e => e.param === 'total') ? 'invalid' : '' %>"
-                                        type="number" name="total" id="total"
-                                        value="<% if (editing || hasError) { %><%= op.total %><% } %>">
+
+                                <input class="<%= validationErrors.find(e => e.param === 'total') ? 'invalid' : '' %>"
+                                    type="number" name="total" id="total"
+                                    value="<% if (editing || hasError) { %><%= op.total %><% } %>">
 
                             </div>
                             <div class="form-control">
 
+
+
+                                <!-- الكود تحتs -->
+
+
+
                                 <% for (var i=0;i<sto.length;i++) { %>
+                                    <div class="row">
 
-                                    <label for="stock">
-                                        <%= sto[i] %>
-                                    </label>
-                                    <input class="" name="stock" type="radio" id="stock" value="<%= sto[i] %>">
 
+                                        <label for="stock">
+                                            <%= sto[i] %>
+                                        </label>
+                                        <input class="" name="stock" type="radio" id="stock" value="<%= sto[i] %>">
+                                    </div>
                                     <% } %>
+                                        <!-- <input class="" name="stock" type="radio" id="stock" value="الاقيانوس"> -->
+
+
+
+
+
+
+                                        <!-- الكود فوق -->
 
                             </div>
 
